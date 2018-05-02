@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: coturn
+spec:
+  replicas: 2
+  selector:
+    app: coturn
+  template:
+    metadata:
+      name: coturn
+      labels:
+        app: coturn
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        turn: "yes"
+      containers:
+        - name: coturn
+          image: meetrix/coturn_long_term_cred:latest
+          imagePullPolicy: Always
+          env: 
+            - name: TURN_REALM
+              value: north.gov
+            - name: TURN_PASSWORD
+              value: mysecret
+            - name: TURN_PORT
+              value: "3478"
+            - name: TURN_PORT_START
+              value: "25000"
+            - name: TURN_PORT_END
+              value: "25004"
+            - name: TURN_EXTRA
+              value: "--external-ip xx.xx.xx.xx"
+          ports: 
+          - containerPort: 3478
+          - containerPort: 25000
+          - containerPort: 25001
+          - containerPort: 25002
+          - containerPort: 25003
+          - containerPort: 25004
+          securityContext:
+            privileged: true
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3478
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
