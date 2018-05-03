@@ -1,2 +1,1 @@
-# coturn_docker
-Coturn configured to work with long-term-credential machanism. To run : `docker run --net=host --name my-coturn -t coturn`
+Complete Guide for thsi project can be fround at (meetrix blog)(meetrix blog]http://blog.meetrix.io/webrtc/turnserver/long_term_cred)
