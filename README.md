@@ -1,1 +1,1 @@
-Complete Guide for thsi project can be fround at [meetrix blog](http://blog.meetrix.io/webrtc/turnserver/long_term_cred)
+Complete Guide for thsi project can be fround at [meetrix blog](http://meetrix.io/blog/webrtc/turnserver/long_term_cred)
